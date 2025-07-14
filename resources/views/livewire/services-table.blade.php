@@ -55,6 +55,8 @@
                     @endforeach
                 </x-select> --}}
 
+
+
                 <x-input label="Nombre" wire:model="form.nombre" />
                 <x-input label="Tipo" wire:model="form.tipo" />
                 <x-textarea label="Descripción" wire:model="form.descripcion" rows="3" />
@@ -66,6 +68,7 @@
                 <x-button wire:click="save">{{ $serviceId ? 'Actualizar' : 'Guardar' }}</x-button>
             </div>
             <!-- </x-slot> -->
+             <!-- Botón de guardar -->
             <div class="mt-4">
                 <button wire:click="save" class="bg-green-600 text-white px-4 py-2 rounded">
                     Guardar
