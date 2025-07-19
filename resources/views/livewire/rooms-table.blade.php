@@ -63,17 +63,22 @@
                 <x-input label="Costo por Noche" wire:model="form.costo_noche" type="number" step="0.01" />
             </div>
 
-            <x-slot name="footer">
-                <div class="flex justify-end gap-3">
-                    <x-button secondary wire:click="$set('showModal', false)">Cancelar</x-button>
-                    <x-button wire:click="save">{{ $roomId ? 'Actualizar' : 'Guardar' }}</x-button>
-                </div>
-                <div class="mt-4">
+            <!-- <x-slot name="footer"> -->
+            <div class="flex justify-end gap-3">
+                <x-button secondary wire:click="$set('showModal', false)">Cancelar</x-button>
+                <x-button wire:click="save">{{ $roomId ? 'Actualizar' : 'Guardar' }}</x-button>
+            </div>
+            <div class="mt-4">
                 <button wire:click="save" class="bg-green-600 text-white px-4 py-2 rounded">
                     Guardar
                 </button>
             </div>
-            </x-slot>
+            <!-- </x-slot> -->
+            <div class="mt-4">
+                <button wire:click="save" class="bg-green-600 text-white px-4 py-2 rounded">
+                    Guardar
+                </button>
+            </div>
         </x-modal>
     @endif
 </div>

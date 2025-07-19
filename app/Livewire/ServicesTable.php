@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Service;
-use App\Models\Hotel;
 use Livewire\WithPagination;
 
 class ServicesTable extends Component
@@ -12,7 +11,6 @@ class ServicesTable extends Component
     use WithPagination;
 
     public $form = [
-        // 'hotel_id' => '',
         'nombre' => '',
         'tipo' => '',
         'descripcion' => '',
@@ -24,7 +22,7 @@ class ServicesTable extends Component
     {
         return view('livewire.services-table', [
             'services' => Service::with('hotel')->paginate(10),
-            // 'hotels' => Hotel::all(),
+            
         ]);
     }
 
@@ -36,7 +34,6 @@ class ServicesTable extends Component
             $service = Service::findOrFail($id);
             $this->serviceId = $service->id;
             $this->form = [
-                // 'hotel_id' => $service->hotel_id,
                 'nombre' => $service->nombre,
                 'tipo' => $service->tipo,
                 'descripcion' => $service->descripcion,
@@ -49,7 +46,6 @@ class ServicesTable extends Component
     public function save()
     {
         $this->validate([
-            // 'form.hotel_id' => 'required|exists:hotels,id',
             'form.nombre' => 'required|string|max:255',
             'form.tipo' => 'required|string|max:255',
             'form.descripcion' => 'required|string',
@@ -76,7 +72,7 @@ class ServicesTable extends Component
     public function resetForm()
     {
         $this->form = [
-            // 'hotel_id' => '',
+            
             'nombre' => '',
             'tipo' => '',
             'descripcion' => '',

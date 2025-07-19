@@ -11,7 +11,6 @@
         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <!-- <th class="px-6 py-3">Hotel</th> -->
                     <th class="px-6 py-3">Nombre</th>
                     <th class="px-6 py-3">Tipo</th>
                     <th class="px-6 py-3">Descripción</th>
@@ -21,7 +20,6 @@
             <tbody>
                 @foreach($services as $service)
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <!-- <td class="px-6 py-4">{{ $service->hotel->nombre ?? '—' }}</td> -->
                         <td class="px-6 py-4">{{ $service->nombre }}</td>
                         <td class="px-6 py-4">{{ $service->tipo }}</td>
                         <td class="px-6 py-4">{{ $service->descripcion }}</td>
@@ -48,13 +46,6 @@
             </x-slot>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {{-- <x-select label="Hotel" wire:model="form.hotel_id">
-                    <option value="">Selecciona un hotel</option>
-                    @foreach($hotels as $hotel)
-                    <option value="{{ $hotel->id }}">{{ $hotel->nombre }}</option>
-                    @endforeach
-                </x-select> --}}
-
 
 
                 <x-input label="Nombre" wire:model="form.nombre" />
@@ -68,7 +59,6 @@
                 <x-button wire:click="save">{{ $serviceId ? 'Actualizar' : 'Guardar' }}</x-button>
             </div>
             <!-- </x-slot> -->
-             <!-- Botón de guardar -->
             <div class="mt-4">
                 <button wire:click="save" class="bg-green-600 text-white px-4 py-2 rounded">
                     Guardar

@@ -9,6 +9,7 @@ use App\Livewire\HotelsTable;
 // use App\Http\Controllers\HotelController;
 use App\Livewire\ServicesTable;
 use App\Livewire\RoomsTable;
+use App\Livewire\RoomServicesManager;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,11 +42,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Servicios
     Route::middleware(['auth'])->group(function () {
-    Route::get('/services', ServicesTable::class)->name('services.index');
+        Route::get('/services', ServicesTable::class)->name('services.index');
 
-    // Cuartos
-    Route::get('/rooms', RoomsTable::class)->name('rooms.index');
-});
+        // Cuartos
+        Route::get('/rooms', RoomsTable::class)->name('rooms.index');
+
+        // Cuartos - Servicios
+        Route::get('/roomservices', RoomServicesManager::class)->name('rooms.services');
+
+    });
 });
 
 require __DIR__ . '/auth.php';
