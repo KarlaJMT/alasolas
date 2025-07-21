@@ -8,25 +8,25 @@
     @endif
 
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <th class="px-6 py-3">Hotel</th>
-                    <th class="px-6 py-3">Nombre</th>
-                    <th class="px-6 py-3">Máx. Personas</th>
-                    <th class="px-6 py-3">Camas</th>
-                    <th class="px-6 py-3">Costo</th>
-                    <th class="px-6 py-3">Acciones</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Hotel</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Nombre</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Máx. Personas</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Camas</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Costo</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach($rooms as $room)
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td class="px-6 py-4">{{ $room->hotel->nombre ?? '—' }}</td>
-                        <td class="px-6 py-4">{{ $room->nombre }}</td>
-                        <td class="px-6 py-4">{{ $room->num_max_personas }}</td>
-                        <td class="px-6 py-4">{{ $room->camas }}</td>
-                        <td class="px-6 py-4">${{ number_format($room->costo_noche, 2) }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->hotel->nombre ?? '—' }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->nombre }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->num_max_personas }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->camas }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">${{ number_format($room->costo_noche, 2) }}</td>
                         <td class="px-6 py-4">
                             <button wire:click="openModal({{ $room->id }})"
                                 class="text-indigo-600 dark:text-indigo-400 mr-2">Editar</button>
@@ -38,7 +38,6 @@
             </tbody>
         </table>
     </div>
-
     <div class="mt-4">
         {{ $rooms->links() }}
     </div>

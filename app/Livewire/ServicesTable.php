@@ -21,8 +21,7 @@ class ServicesTable extends Component
     public function render()
     {
         return view('livewire.services-table', [
-            'services' => Service::with('hotel')->paginate(10),
-            
+            'services' => Service::paginate(10),
         ]);
     }
 

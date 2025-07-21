@@ -7,26 +7,36 @@
         </div>
     @endif
 
+    <div class="flex items-center mb-4">
+        <label for="hotelFilter" class="mr-2 font-semibold">Filtrar por hotel:</label>
+        <select id="hotelFilter" wire:model="hotelFilter" class="border rounded px-2 py-1">
+            <option value="">Todos</option>
+            @foreach($hotelNames as $name)
+                <option value="{{ $name }}">{{ $name }}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <th class="px-6 py-3 text-left">Nombre</th>
-                    <th class="px-6 py-3 text-left">Dirección</th>
-                    <th class="px-6 py-3 text-left">Contacto</th>
-                    <th class="px-6 py-3 text-left">Teléfono</th>
-                    <th class="px-6 py-3 text-left">Categoría</th>
-                    <th class="px-6 py-3 text-left">Acciones</th>
+                    <th class="px-6 py-3 text-left border-b border-r border-gray-300">Nombre</th>
+                    <th class="px-6 py-3 text-left border-b border-r border-gray-300">Dirección</th>
+                    <th class="px-6 py-3 text-left border-b border-r border-gray-300">Contacto</th>
+                    <th class="px-6 py-3 text-left border-b border-r border-gray-300">Teléfono</th>
+                    <th class="px-6 py-3 text-left border-b border-r border-gray-300">Categoría</th>
+                    <th class="px-6 py-3 text-left border-b border-gray-300">Acciones</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach($hotels as $hotel)
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td class="px-6 py-4 dark:text-gray-300">{{ $hotel->nombre }}</td>
-                        <td class="px-6 py-4 dark:text-gray-300">{{ $hotel->direccion }}</td>
-                        <td class="px-6 py-4 dark:text-gray-300">{{ $hotel->contacto }}</td>
-                        <td class="px-6 py-4 dark:text-gray-300">{{ $hotel->telefono }}</td>
-                        <td class="px-6 py-4 dark:text-gray-300">{{ $hotel->categoria }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300 dark:text-gray-300">{{ $hotel->nombre }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300 dark:text-gray-300">{{ $hotel->direccion }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300 dark:text-gray-300">{{ $hotel->contacto }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300 dark:text-gray-300">{{ $hotel->telefono }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300 dark:text-gray-300">{{ $hotel->categoria }}</td>
                         <td class="px-6 py-4">
                             <button wire:click="openModal({{ $hotel->id }})"
                                 class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300 mr-3">

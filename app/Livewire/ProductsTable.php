@@ -84,10 +84,9 @@ class ProductsTable extends Component
 
     public function render()
     {
-        $categories = Category::where('is_active', true)->get();
         return view('livewire.products-table', [
             'products' => Product::with('category')->paginate(10),
-            'categories' => $categories
+            'categories' => Category::all(),
         ]);
     }
 }

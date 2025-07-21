@@ -70,7 +70,7 @@ class CategoriesTable extends Component
     public function render()
     {
         return view('livewire.categories-table', [
-            'categories' => Category::paginate(10)
+            'categories' => Category::paginate(10),
         ]);
     }
 }

@@ -13,9 +13,9 @@
                     <th class="px-6 py-3 text-left">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700 space-y-2">
                 @foreach($products as $product)
-                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 space-x-2">
                         <td class="px-6 py-4 dark:text-gray-300">{{ $product->name }}</td>
                         <td class="px-6 py-4 dark:text-gray-300">{{ $product->category->name ?? 'N/A' }}</td>
                         <td class="px-6 py-4 dark:text-gray-300">${{ number_format($product->price, 2) }}</td>

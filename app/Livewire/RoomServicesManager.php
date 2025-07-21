@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Room;
 use App\Models\Service;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RoomServicesManager extends Component
 {
+    use WithPagination;
     public ?int $roomEditingId = null;
     public array $selectedServices = [];
     public $showServiceModal = false;
@@ -38,7 +40,7 @@ class RoomServicesManager extends Component
     public function render()
     {
         $services = Service::all();
-        $rooms = Room::with('services', 'hotel')->get();
+        $rooms = Room::with('services', 'hotel')->paginate(10);
         return view('livewire.room-services-manager', compact('services', 'rooms'));
     }
 }

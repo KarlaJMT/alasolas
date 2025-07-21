@@ -20,6 +20,8 @@ class HotelsTable extends Component
         'categoria' => ''
     ];
 
+    public $hotelFilter = '';
+
     protected $rules = [
         'form.nombre' => 'required|min:3|max:255',
         'form.direccion' => 'required|min:3|max:255',
@@ -89,11 +91,20 @@ class HotelsTable extends Component
         session()->flash('message', 'Hotel eliminado');
     }
 
+    public function updatingHotelFilter()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
+        $query = Hotel::query();
+        if ($this->hotelFilter) {
+            $query->where('nombre', $this->hotelFilter);
+        }
         return view('livewire.hotels-table', [
-            'hotels' => Hotel::paginate(10)
+            'hotels' => $query->paginate(10),
+            'hotelNames' => Hotel::pluck('nombre')->unique(),
         ]);
-
     }
 }

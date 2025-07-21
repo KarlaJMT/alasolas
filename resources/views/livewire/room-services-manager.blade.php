@@ -8,27 +8,23 @@
     @endif
 
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <th class="px-6 py-3">Hotel</th>
-                    <th class="px-6 py-3">Habitación</th>
-                    <th class="px-6 py-3">Servicios</th>
-                    <th class="px-6 py-3">Acciones</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Hotel</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Habitación</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Servicios</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach($rooms as $room)
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td class="px-6 py-4">{{ $room->hotel->nombre ?? '—' }}</td>
-                        <td class="px-6 py-4">{{ $room->nombre }}</td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->hotel->nombre ?? '—' }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $room->nombre }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">
                             @if ($room->services->count())
-                                <ul class="list-disc pl-5">
-                                    @foreach ($room->services as $service)
-                                        <li>{{ $service->nombre }}</li>
-                                    @endforeach
-                                </ul>
+                                {{ $room->services->pluck('nombre')->implode(' | ') }}
                             @else
                                 <span class="text-gray-500 italic">Sin servicios</span>
                             @endif
@@ -41,6 +37,9 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="mt-4">
+        {{ $rooms->links() }}
     </div>
 
     {{-- Modal para editar servicios --}}

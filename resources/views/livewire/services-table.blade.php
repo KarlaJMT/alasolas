@@ -8,21 +8,21 @@
     @endif
 
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <th class="px-6 py-3">Nombre</th>
-                    <th class="px-6 py-3">Tipo</th>
-                    <th class="px-6 py-3">Descripción</th>
-                    <th class="px-6 py-3">Acciones</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Nombre</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Tipo</th>
+                    <th class="px-6 py-3 border-b border-r border-gray-300">Descripción</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                 @foreach($services as $service)
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td class="px-6 py-4">{{ $service->nombre }}</td>
-                        <td class="px-6 py-4">{{ $service->tipo }}</td>
-                        <td class="px-6 py-4">{{ $service->descripcion }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $service->nombre }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ $service->tipo }}</td>
+                        <td class="px-6 py-4 border-r border-gray-300">{{ is_array($service->descripcion) ? implode(', ', $service->descripcion) : $service->descripcion }}</td>
                         <td class="px-6 py-4">
                             <button wire:click="openModal({{ $service->id }})"
                                 class="text-indigo-600 dark:text-indigo-400 mr-2">Editar</button>
@@ -34,7 +34,6 @@
             </tbody>
         </table>
     </div>
-
     <div class="mt-4">
         {{ $services->links() }}
     </div>
