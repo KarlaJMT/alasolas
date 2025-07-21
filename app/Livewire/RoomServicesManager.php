@@ -13,6 +13,8 @@ class RoomServicesManager extends Component
     public ?int $roomEditingId = null;
     public array $selectedServices = [];
     public $showServiceModal = false;
+    public $hotelFilter = '';
+    public $pendingHotelFilter = '';
 
     public function mount()
     {
@@ -37,10 +39,25 @@ class RoomServicesManager extends Component
         }
     }
 
+    public function applyHotelFilter()
+    {
+        $this->hotelFilter = $this->pendingHotelFilter;
+        $this->resetPage();
+    }
+
     public function render()
     {
         $services = Service::all();
-        $rooms = Room::with('services', 'hotel')->paginate(10);
-        return view('livewire.room-services-manager', compact('services', 'rooms'));
+        $query = Room::with('services', 'hotel');
+        if ($this->hotelFilter) {
+            $query->where('hotel_id', $this->hotelFilter);
+        }
+        $rooms = $query->paginate(5);
+        $hotelNames = \App\Models\Hotel::pluck('nombre', 'id');
+        return view('livewire.room-services-manager', compact('services', 'rooms', 'hotelNames'))
+            ->with([
+                'hotelFilter' => $this->hotelFilter,
+                'pendingHotelFilter' => $this->pendingHotelFilter,
+            ]);
     }
 }

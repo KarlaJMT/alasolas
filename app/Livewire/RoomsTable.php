@@ -23,13 +23,33 @@ class RoomsTable extends Component
 
     public $roomId = null;
     public $showModal = false;
+    public $hotelFilter = '';
+    public $pendingHotelFilter = '';
+
+    public function updatingHotelFilter()
+    {
+        $this->resetPage();
+    }
+
+    public function applyHotelFilter()
+    {
+        $this->hotelFilter = $this->pendingHotelFilter;
+        $this->resetPage();
+    }
 
     public function render()
     {
+        $query = Room::with('hotel', 'services');
+        if ($this->hotelFilter) {
+            $query->where('hotel_id', $this->hotelFilter);
+        }
         return view('livewire.rooms-table', [
-            'rooms' => Room::with('hotel', 'services')->paginate(10),
+            'rooms' => $query->paginate(5),
             'hotels' => Hotel::all(),
             'servicesList' => Service::all(),
+            'hotelNames' => Hotel::pluck('nombre', 'id'),
+            'hotelFilter' => $this->hotelFilter,
+            'pendingHotelFilter' => $this->pendingHotelFilter,
         ]);
     }
 

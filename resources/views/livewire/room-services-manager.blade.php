@@ -7,6 +7,17 @@
         </div>
     @endif
 
+    <div class="flex items-center mb-4">
+        <label for="hotelFilter" class="mr-2 font-semibold">Filtrar por hotel:</label>
+        <select id="hotelFilter" wire:model="pendingHotelFilter" class="border rounded px-2 py-1 bg-white text-black dark:bg-gray-200 dark:text-black">
+            <option value="">Todos</option>
+            @foreach($hotelNames as $id => $name)
+                <option value="{{ $id }}">{{ $name }}</option>
+            @endforeach
+        </select>
+        <button wire:click="applyHotelFilter" class="ml-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Filtrar</button>
+    </div>
+
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
         <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-700">

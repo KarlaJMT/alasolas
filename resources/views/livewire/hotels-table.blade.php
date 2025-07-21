@@ -7,15 +7,7 @@
         </div>
     @endif
 
-    <div class="flex items-center mb-4">
-        <label for="hotelFilter" class="mr-2 font-semibold">Filtrar por hotel:</label>
-        <select id="hotelFilter" wire:model="hotelFilter" class="border rounded px-2 py-1">
-            <option value="">Todos</option>
-            @foreach($hotelNames as $name)
-                <option value="{{ $name }}">{{ $name }}</option>
-            @endforeach
-        </select>
-    </div>
+    {{-- El filtro de hotel ha sido removido --}}
 
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
         <table class="min-w-full border-separate border-spacing-0 divide-y divide-gray-200 dark:divide-gray-700">
@@ -70,7 +62,16 @@
                 <x-input label="Dirección" wire:model="form.direccion" />
                 <x-input label="Contacto" wire:model="form.contacto" />
                 <x-input label="Teléfono" wire:model="form.telefono" />
-                <x-input label="Categoría" wire:model="form.categoria" />
+                <x-input label="Categoría" wire:model="form.categoria" type="number" min="1" max="5" />
+                @error('form.categoria')
+                    <div class="text-red-600 text-sm mt-1">
+                        @if(str_contains($message, 'max'))
+                            No se acepta mayor calificación
+                        @else
+                            {{ $message }}
+                        @endif
+                    </div>
+                @enderror
             </div>
 
             <!-- <x-slot name="footer"> -->

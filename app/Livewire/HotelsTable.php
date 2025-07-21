@@ -27,7 +27,7 @@ class HotelsTable extends Component
         'form.direccion' => 'required|min:3|max:255',
         'form.contacto' => 'required|min:3|max:255',
         'form.telefono' => 'required|min:3|max:255',
-        'form.categoria' => 'required|min:1|max:50'
+        'form.categoria' => 'required|integer|min:1|max:5'
     ];
 
     public function resetForm()
@@ -68,7 +68,7 @@ class HotelsTable extends Component
             'form.direccion' => 'required|string|max:255',
             'form.contacto' => 'required|string|max:255',
             'form.telefono' => 'required|string|max:255',
-            'form.categoria' => 'required|string|max:255',
+            'form.categoria' => 'required|integer|min:1|max:5',
         ]);
 
         if ($this->hotelId) {
@@ -103,7 +103,7 @@ class HotelsTable extends Component
             $query->where('nombre', $this->hotelFilter);
         }
         return view('livewire.hotels-table', [
-            'hotels' => $query->paginate(10),
+            'hotels' => $query->paginate(5),
             'hotelNames' => Hotel::pluck('nombre')->unique(),
         ]);
     }
