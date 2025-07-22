@@ -11,7 +11,10 @@ class Hotel extends Model
         'direccion',
         'contacto',
         'telefono',
-        'categoria'
+        'categoria',
+        // .. otros campos existentes ..
+        'latitude',
+        'longitude'
     ];
 
     public function rooms()

@@ -17,7 +17,9 @@ class HotelsTable extends Component
         'direccion' => '',
         'contacto' => '',
         'telefono' => '',
-        'categoria' => ''
+        'categoria' => '',
+        'latitude' => null,
+        'longitude' => null
     ];
 
     public $hotelFilter = '';
@@ -27,7 +29,9 @@ class HotelsTable extends Component
         'form.direccion' => 'required|min:3|max:255',
         'form.contacto' => 'required|min:3|max:255',
         'form.telefono' => 'required|min:3|max:255',
-        'form.categoria' => 'required|integer|min:1|max:5'
+        'form.categoria' => 'required|integer|min:1|max:5',
+        'form.latitude' => 'required|numeric',
+        'form.longitude' => 'required|numeric',
     ];
 
     public function resetForm()
